@@ -6,5 +6,5 @@ C_DEFINES =
 
 C_INCLUDES = -I/home/sayem/dev/cubolt/deps/glad
 
-C_FLAGS = 
+C_FLAGS = -g
 

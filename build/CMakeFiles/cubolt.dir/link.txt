@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/cubolt.dir/src/main.cpp.o -o cubolt  -lglfw libglad.a -ldl 
+/usr/bin/c++ -g CMakeFiles/cubolt.dir/src/main.cpp.o -o cubolt  -lglfw libglad.a -ldl 

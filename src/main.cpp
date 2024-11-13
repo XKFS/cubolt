@@ -1,39 +1,49 @@
-#include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+
+#include <iostream>
+
+void fbsize_cb(GLFWwindow* window, int width, int height);
 
 int main()
 {
     glfwInit();
-
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    GLFWwindow* window = glfwCreateWindow(400, 400, "Cubolt", NULL, NULL);
-
+    GLFWwindow* window = glfwCreateWindow(800, 600, "Cubolt", NULL, NULL);
     if (window == NULL)
     {
-        std::cout << "Failed to create the window" << std::endl;
+        std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
         return -1;
     }
     glfwMakeContextCurrent(window);
+    glfwSetFramebufferSizeCallback(window, fbsize_cb);
 
-    gladLoadGL();
-
-    while(!glfwWindowShouldClose(window))
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
-        
-        glViewport(0, 0, 400, 400);
-        glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+        std::cout << "Failed to initialize GLAD" << std::endl;
+        return -1;
+    }    
+
+    while (!glfwWindowShouldClose(window))
+    {
+
+        glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
 
-    glfwDestroyWindow(window);
-
     glfwTerminate();
     return 0;
 }
+
+
+void fbsize_cb(GLFWwindow* window, int width, int height)
+{
+    glViewport(0, 0, width, height);
+}
+

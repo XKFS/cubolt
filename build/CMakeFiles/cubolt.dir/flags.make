@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/sayem/dev/cubolt/deps/glad
 
-CXX_FLAGS = 
+CXX_FLAGS = -g
 
